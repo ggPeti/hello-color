@@ -22,10 +22,10 @@ const getColor = (base, {
     return color
   }
 
-  const isDark = chroma.contrast(neg, '#000') < chroma.contrast(neg, '#fff')
-  const isDull = chroma(neg).hsl()[1] < .5
+  const isDark = chroma.contrast(color, '#000') < chroma.contrast(color, '#fff')
+  const isDull = chroma(color).hsl()[1] < .5
 
-  return chroma(neg)
+  return chroma(color)
     .saturate(isDull ? multiplier * saturation : 0)
     .desaturate(isDull ? 0 : multiplier * saturation)
     .darken(isDark ? 0 : multiplier * lightness)
