@@ -12,9 +12,14 @@ const getColor = (base, {
   lightness,
   saturation,
 }) => {
-  const neg = negate(base)
+  var color = negate(base)
+
+  const [ hh, ss, ll ] = chroma(color).hsl()
+  console.log(hh, ll, ss)
+  color = chroma.hsl(hh + Math.random() * 360, ss, ll)
+
   if (multiplier === 1) {
-    return neg
+    return color
   }
 
   const isDark = chroma.contrast(neg, '#000') < chroma.contrast(neg, '#fff')
@@ -117,4 +122,3 @@ const hello = (base, options = {}) => {
 }
 
 export default hello
-
